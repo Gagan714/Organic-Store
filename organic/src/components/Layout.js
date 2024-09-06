@@ -9,17 +9,17 @@ function Layout({ children }) {
   const getPageDetails = () => {
     switch (location.pathname) {
       case '/everything':
-        return { heading: 'Everything', title: 'Everything - My Store' };
+        return { heading: 'Everything', title: 'Shop - Organic Store' };
       case '/groceries':
-        return { heading: 'Groceries', title: 'Groceries - My Store' };
+        return { heading: 'Groceries', title: 'Groceries Archieves- Organic Store' };
       case '/juice':
-        return { heading: 'Juice', title: 'Juice - My Store' };
+        return { heading: 'Juice', title: 'Juice Archieves- Organic Store' };
       case '/about':
-        return { heading: 'About Us', title: 'About Us - My Store' };
+        return { heading: 'About Us', title: 'About Us - Organic Store' };
       case '/contact':
-        return { heading: 'Contact Us', title: 'Contact Us - My Store' };
+        return { heading: 'Contact Us', title: 'Contact Us - Organic Store' };
       default:
-        return { heading: 'Home', title: 'Home - My Store' };
+        return { heading: 'Home', title: 'Home - Organic Store' };
     }
   };
 
