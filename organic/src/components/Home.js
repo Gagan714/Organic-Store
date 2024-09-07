@@ -6,6 +6,7 @@ import products from './Products'; // Import the products array
 function Home() {
   // Get the first 4 products
   const firstFourProducts = products.slice(0,4);
+  const lastFourProducts = products.slice(8,12);
 
   return (
     <>
@@ -19,7 +20,8 @@ function Home() {
           <div className='font-bold text-6xl'>Join The Organic Movement!</div>
           <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</div>
           <div>
-            <button className='h-12 w-44 border-2 border-black bg-green-600 rounded-lg text-white font-bold'>
+            <button className='h-12 w-44 border-2 border-black bg-green-600 rounded-lg text-white font-bold'
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <div className='flex justify-center items-center gap-3'>
                 <div><FontAwesomeIcon icon={faShoppingCart} color="white" /></div>
                 <div>SHOP NOW</div>
@@ -52,8 +54,8 @@ function Home() {
       </div>
       <div className='flex flex-wrap justify-center gap-6'>
         {firstFourProducts.map((product) => (
-          <div key={product.id} className='border rounded-md p-4 w-60'>
-            <img src={product.image} alt={product.name} className='w-full h-40 object-cover mb-2' />
+          <div key={product.id} className='border rounded-md p-4 w-80'>
+            <img src={product.image} alt={product.name} className='w-full h-60 object-cover mb-2' />
             <div className='text-center'>
               <p className='text-sm text-gray-500'>{product.category}</p>
               <h3 className='font-bold text-xl mt-1'>{product.name}</h3>
@@ -70,6 +72,54 @@ function Home() {
             </div>
           </div>
         ))}
+      </div>
+      <div className='flex justify-center items-center mb-14 mt-16'><img src='leaf.png' alt='leaf'></img></div>
+      <div className='bg-black h-32 w-full flex justify-around items-center gap-80'>
+        <div className='text-white text-4xl font-bold'>Get 25% Off On Your First Purchase!</div>
+        <div>
+            <button className='h-12 w-44 border-2 border-black bg-green-600 rounded-lg text-white font-bold'
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <div className='flex justify-center items-center gap-3'>
+                <div><FontAwesomeIcon icon={faShoppingCart} color="white" /></div>
+                <div>SHOP NOW</div>
+              </div>
+            </button>
+          </div>
+      </div>
+      <div className='w-full bg-slate-300 font-semibold text-2xl text-black flex justify-center items-center p-3'>Try It For Free. No Registration Needed.</div>
+      <div className='flex flex-col justify-center items-center m-10 mt-24 gap-4'>
+        <div className='font-bold text-3xl'>Trending Products</div>
+        <div><img src='logo-leaf.png' alt='leaf' /></div>
+      </div>
+      <div className='flex flex-wrap justify-center gap-6'>
+        {lastFourProducts.map((product) => (
+          <div key={product.id} className='border rounded-md p-4 w-80'>
+            <img src={product.image} alt={product.name} className='w-full h-60 object-cover mb-2' />
+            <div className='text-center'>
+              <p className='text-sm text-gray-500'>{product.category}</p>
+              <h3 className='font-bold text-xl mt-1'>{product.name}</h3>
+              <p className='text-lg mt-1'>₹{product.price}</p>
+              <div className='mt-1'>
+                {[...Array(5)].map((_, index) => (
+                  <FontAwesomeIcon
+                    key={index}
+                    icon={faStar}
+                    color={index < Math.round(product.review) ? 'gold' : 'gray'}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className='flex justify-center items-center mb-14 mt-16'><img src='leaf.png' alt='leaf'></img></div>
+      <div className='flex justify-center items-center'>
+        <div className='font-semibold text-2xl'>Featured Brands:</div>
+        <div><img src='logo-1.svg' alt='logo'></img></div>
+        <div><img src='logo-2.svg' alt='logo'></img></div>
+        <div><img src='logo-3.svg' alt='logo'></img></div>
+        <div><img src='logo-4.svg' alt='logo'></img></div>
+        <div><img src='logo-5.svg' alt='logo'></img></div>
       </div>
     </>
   );
