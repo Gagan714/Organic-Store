@@ -9,21 +9,21 @@ function Layout({ children }) {
   const getPageDetails = () => {
     switch (location.pathname) {
       case '/everything':
-        return { heading: 'Everything', title: 'Shop - Organic Store' };
+        return { title: 'Shop - Organic Store' };
       case '/groceries':
-        return { heading: 'Groceries', title: 'Groceries Archieves- Organic Store' };
+        return {  title: 'Groceries Archieves- Organic Store' };
       case '/juice':
-        return { heading: 'Juice', title: 'Juice Archieves- Organic Store' };
+        return {  title: 'Juice Archieves- Organic Store' };
       case '/about':
-        return { heading: 'About Us', title: 'About Us - Organic Store' };
+        return { title: 'About Us - Organic Store' };
       case '/contact':
-        return { heading: 'Contact Us', title: 'Contact Us - Organic Store' };
+        return { title: 'Contact Us - Organic Store' };
       default:
-        return { heading: 'Home', title: 'Home - Organic Store' };
+        return { title: 'Home - Organic Store' };
     }
   };
 
-  const { heading, title } = getPageDetails();
+  const { title } = getPageDetails();
 
   useEffect(() => {
     document.title = title;
@@ -32,9 +32,6 @@ function Layout({ children }) {
   return (
     <div>
       <Navbar />
-      <header>
-        <h1>{heading}</h1>
-      </header>
       <main>{children}</main>
     </div>
   );
