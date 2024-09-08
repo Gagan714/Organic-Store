@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Product from './Products'
 
 function About() {
   const [Customer, setCustomer] = useState(4800);
   const [product, setProduct] = useState(550);
   const [category, setCategory] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const[index,setIndex]=useState(0);
   const counterRef = useRef(null); // Reference for Intersection Observer
 
   // Intersection Observer to check when the component is in view
@@ -48,6 +50,12 @@ function About() {
       return () => clearTimeout(timeout); // Cleanup timeout
     }
   }, [Customer, product, category, isVisible]); // Dependency array
+  useEffect(() => {
+    const intervak=setInterval(()=>{
+      setIndex((index)=>index===Product.length-1? 0 : index+1)
+    },3000)
+    return () => clearTimeout(intervak)
+  }, [index]);
 
   return (
     <>
@@ -104,6 +112,18 @@ function About() {
           <div className='text-xl font-medium'>Categories</div>
         </div>
       </div>
+      <div className='flex justify-center items-center m-20'>
+  <div className='slider-container'>
+    <div className='w-[600px] h-[600px] overflow-hidden'>
+      <img
+        src={Product[index].image}
+        alt='p'
+        className='w-full h-full object-cover' // Ensures image fills the container and keeps aspect ratio
+      />
+    </div>
+  </div>
+</div>
+
     </>
   );
 }
