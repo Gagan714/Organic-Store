@@ -143,6 +143,149 @@ const products = [
         { user: "Anna", text: "Ideal for making bread." }
       ],
       category: "Groceries",
+    },{
+      id: 13,
+      name: "Almond Milk",
+      price: 150.00,
+      image: "almond milk.jpg",
+      review: 4.3,
+      comments: [
+        { user: "Alex", text: "Creamy and delicious!" },
+        { user: "Sophia", text: "Great alternative to dairy." }
+      ],
+      category: "Juice",
+    },
+    {
+      id: 14,
+      name: "Green Tea",
+      price: 120.00,
+      image: "green-tea.jpg",
+      review: 4.6,
+      comments: [
+        { user: "Liam", text: "Refreshing and calming." },
+        { user: "Olivia", text: "Perfect for a healthy boost." }
+      ],
+      category: "Juice",
+    },
+    {
+      id: 15,
+      name: "Quinoa",
+      price: 290.00,
+      image: "quinoa.jpg",
+      review: 4.4,
+      comments: [
+        { user: "Noah", text: "Nutritious and versatile." },
+        { user: "Emma", text: "Great for salads and bowls." }
+      ],
+      category: "Groceries",
+    },
+    {
+      id: 16,
+      name: "Organic Avocados",
+      price: 200.00,
+      image: "Avocado.jpg",
+      review: 4.8,
+      comments: [
+        { user: "Mia", text: "Fresh and creamy." },
+        { user: "James", text: "Great for guacamole." }
+      ],
+      category: "Groceries",
+    },
+    {
+      id: 17,
+      name: "Coconut Water",
+      price: 85.00,
+      image: "coconut-water.jpg",
+      review: 4.7,
+      comments: [
+        { user: "Isabella", text: "Hydrating and tasty." },
+        { user: "Ethan", text: "Perfect for a quick refresh." }
+      ],
+      category: "Juice",
+    },
+    {
+      id: 18,
+      name: "Organic Peanut Butter",
+      price: 275.00,
+      image: "peanut-butter.jpg",
+      review: 4.5,
+      comments: [
+        { user: "Charlotte", text: "Smooth and rich flavor." },
+        { user: "Daniel", text: "Great for sandwiches and snacks." }
+      ],
+      category: "Groceries",
+    },
+    {
+      id: 19,
+      name: "Cold Pressed Olive Oil",
+      price: 350.00,
+      image: "olive-oil.jpg",
+      review: 4.6,
+      comments: [
+        { user: "Lucas", text: "High quality and great taste." },
+        { user: "Grace", text: "Perfect for cooking and dressings." }
+      ],
+      category: "Groceries",
+    },
+    {
+      id: 20,
+      name: "Berry Smoothie Mix",
+      price: 180.00,
+      image: "berry.jpg",
+      review: 4.5,
+      comments: [
+        { user: "Ava", text: "Delicious and easy to make." },
+        { user: "Michael", text: "Great for a quick breakfast." }
+      ],
+      category: "Juice",
+    },
+    {
+      id: 21,
+      name: "Raw Almonds",
+      price: 320.00,
+      image: "almonds.jpg",
+      review: 4.7,
+      comments: [
+        { user: "Ella", text: "Crunchy and fresh." },
+        { user: "Liam", text: "Perfect for snacking and recipes." }
+      ],
+      category: "Groceries",
+    },
+    {
+      id: 22,
+      name: "Herbal Tea",
+      price: 110.00,
+      image: "tea.jpg",
+      review: 4.3,
+      comments: [
+        { user: "Benjamin", text: "Soothing and fragrant." },
+        { user: "Avery", text: "Great for relaxation." }
+      ],
+      category: "Juice",
+    },
+    {
+      id: 23,
+      name: "Gluten-Free Pasta",
+      price: 220.00,
+      image: "pasta.jpg",
+      review: 4.6,
+      comments: [
+        { user: "Oliver", text: "Great texture and taste." },
+        { user: "Lily", text: "Perfect for gluten-free diets." }
+      ],
+      category: "Groceries",
+    },
+    {
+      id: 24,
+      name: "Fresh Mint Leaves",
+      price: 60.00,
+      image: "mint-leaves.jpg",
+      review: 4.4,
+      comments: [
+        { user: "Henry", text: "Adds a fresh touch to dishes." },
+        { user: "Sofia", text: "Great for teas and garnishes." }
+      ],
+      category: "Groceries",
     },
   ];
   
