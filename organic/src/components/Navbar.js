@@ -47,9 +47,6 @@ function Navbar() {
             <img height={30} width={30} src="cart.svg" alt="cart" />
           </div>
         </div>
-      <div>
-        <img height={20} width={20} src="login.svg" alt="login" />
-      </div>
       </div>
     </div>
   );
