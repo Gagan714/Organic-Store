@@ -1,7 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAddressBook, faMoneyBill,faStar, faRecycle, faTruck, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import products from './Products'; // Import the products array
+import { faAddressBook, faMoneyBill,faRecycle, faTruck, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import products from './Products'; 
+import Card from './Card';
 
 function Home() {
   // Get the first 4 products
@@ -54,23 +55,7 @@ function Home() {
       </div>
       <div className='flex flex-wrap justify-center gap-6'>
         {firstFourProducts.map((product) => (
-          <div key={product.id} className='border rounded-md p-4 w-80'>
-            <img src={product.image} alt={product.name} className='w-full h-60 object-cover mb-2' />
-            <div className='text-center'>
-              <p className='text-sm text-gray-500'>{product.category}</p>
-              <h3 className='font-bold text-xl mt-1'>{product.name}</h3>
-              <p className='text-lg mt-1'>₹{product.price}</p>
-              <div className='mt-1'>
-                {[...Array(5)].map((_, index) => (
-                  <FontAwesomeIcon
-                    key={index}
-                    icon={faStar}
-                    color={index < Math.round(product.review) ? 'gold' : 'gray'}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
+          <Card product={product}/>
         ))}
       </div>
       <div className='flex justify-center items-center mb-14 mt-16'><img src='leaf.png' alt='leaf'></img></div>
@@ -93,23 +78,7 @@ function Home() {
       </div>
       <div className='flex flex-wrap justify-center gap-6'>
         {lastFourProducts.map((product) => (
-          <div key={product.id} className='border rounded-md p-4 w-80'>
-            <img src={product.image} alt={product.name} className='w-full h-60 object-cover mb-2' />
-            <div className='text-center'>
-              <p className='text-sm text-gray-500'>{product.category}</p>
-              <h3 className='font-bold text-xl mt-1'>{product.name}</h3>
-              <p className='text-lg mt-1'>₹{product.price}</p>
-              <div className='mt-1'>
-                {[...Array(5)].map((_, index) => (
-                  <FontAwesomeIcon
-                    key={index}
-                    icon={faStar}
-                    color={index < Math.round(product.review) ? 'gold' : 'gray'}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
+          <Card product={product} />
         ))}
       </div>
       <div className='flex justify-center items-center mb-14 mt-16'><img src='leaf.png' alt='leaf'></img></div>
