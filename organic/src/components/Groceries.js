@@ -11,6 +11,7 @@ const PAGE_SIZE = 6;
 function Groceries() {
   const grocerie=products.filter(product=>product.category==="Groceries")
   const juice=products.filter(product=>product.category==="Juice")
+  const side=products.slice(7,9);
   const [filteredProducts, setFilteredProducts] = useState(grocerie);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -102,12 +103,17 @@ function Groceries() {
          <div><Link to="/Groceries">Groceries</Link>({grocerie.length})</div>
           <div><Link to="/Juice">Juice</Link>({juice.length})</div>
           </div>
+          <div className='flex flex-col gap-5 mt-6'>
+          {side.map((product)=>(
+            <Card key={product.id} product={product}/>
+          ))}
+          </div>
         </div>
 
         <div className='w-3/4 flex flex-col justify-center items-start gap-7'>
-          <div className='text-lg text-gray-500'><Link to="/">Home </Link>/ Shop</div>
-          <div className='font-bold text-5xl text-green-700'>SHOP</div>
-
+          <div className='text-lg text-gray-500'><Link to="/">Home </Link> / Groceries</div>
+          <div className='font-bold text-5xl text-green-700'>GROCERIES</div>
+          <div className='text-gray-500 w-2/3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dignissim, velit et luctus interdum, est quam scelerisque tellus, eget luctus mi diam vitae erat. Praesent porttitor lacus vitae dictum posuere. Suspendisse elementum metus ac dolor tincidunt, eu imperdiet nisi dictum.</div>
            {/* Filtered Products */}
            <div className='flex flex-wrap justify-center gap-6 h-full'>
             {paginatedProducts.length > 0 ? (
