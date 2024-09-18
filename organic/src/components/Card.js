@@ -1,21 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 function Card({ product }) {
-  const navigate = useNavigate();
-
-  // Function to handle the card click event
-  const handleCardClick = () => {
-    navigate(`/product/${product.id}`);
-  };
-
   return (
     <div
       key={product.id}
       className='border rounded-md p-4 w-80 cursor-pointer'  // Added cursor-pointer for hover effect
-      onClick={handleCardClick}  // Added onClick to navigate to product details
     >
       <img src={product.image} alt={product.name} className='w-full h-60 object-cover mb-2' />
       <div className='text-center'>
