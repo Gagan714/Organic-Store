@@ -4,7 +4,7 @@ const products = [
       id: 1,
       name: "Assorted Coffee",
       price: 350.00,
-      image: "/coffee-asorted.jpg", // Add image path later
+      image: "coffee-asorted.jpg", // Add image path later
       review: 4.5, // Random review between 3.0 and 5.0
       comments: [
         { user: "John", text: "Great taste and aroma!" },
@@ -16,7 +16,7 @@ const products = [
       id: 2,
       name: "Cashew Butter",
       price: 255.00, // Sale price
-      image: "/cashew-butter.jpg",
+      image: "cashew-butter.jpg",
       review: 4.2,
       comments: [
         { user: "Alex", text: "Smooth and delicious!" },
@@ -28,7 +28,7 @@ const products = [
       id: 3,
       name: "Diabetic Cookies",
       price: 125.00, // Sale price
-      image: "/diabetic-cookies.jpg",
+      image: "diabetic-cookies.jpg",
       review: 4.0,
       comments: [
         { user: "Sam", text: "A great snack without the sugar." },
@@ -40,7 +40,7 @@ const products = [
       id: 4,
       name: "Farm Fresh Eggs",
       price: 134.00,
-      image: "/eggs.jpg",
+      image: "eggs.jpg",
       review: 4.7,
       comments: [
         { user: "Tom", text: "Fresh and organic!" },
@@ -52,7 +52,7 @@ const products = [
       id: 5,
       name: "Fresh Orange Juice",
       price: 118.00,
-      image: "/orage-juice-kariz.jpg",
+      image: "orage-juice-kariz.jpg",
       review: 4.8,
       comments: [
         { user: "Harry", text: "So refreshing and natural!" },
@@ -64,7 +64,7 @@ const products = [
       id: 6,
       name: "Fresh Organic Honey",
       price: 345.00,
-      image: "/organic-honey.jpg",
+      image: "organic-honey.jpg",
       review: 4.9,
       comments: [
         { user: "Mark", text: "Pure and rich flavor!" },
@@ -76,7 +76,7 @@ const products = [
       id: 7,
       name: "Hand Sanitizer",
       price: 115.00,
-      image: "/sanitizer.jpg",
+      image: "sanitizer.jpg",
       review: 4.3,
       comments: [
         { user: "Nina", text: "Handy and effective." },
@@ -88,7 +88,7 @@ const products = [
       id: 8,
       name: "Handpicked Red Chillies",
       price: 49.00,
-      image: "/red-chillies.jpg",
+      image: "red-chillies.jpg",
       review: 4.6,
       comments: [
         { user: "Paul", text: "Perfect for spicy dishes." },
@@ -100,7 +100,7 @@ const products = [
       id: 9,
       name: "Natural Extracted Edible Oil",
       price: 215.00, // Sale price
-      image: "/edible-oil.jpg",
+      image: "edible-oil.jpg",
       review: 4.5,
       comments: [
         { user: "David", text: "Healthy and natural." },
@@ -112,7 +112,7 @@ const products = [
       id: 10,
       name: "Organic Face Scrub",
       price: 235.00,
-      image: "/face-wash.jpg",
+      image: "face-wash.jpg",
       review: 4.4,
       comments: [
         { user: "Jenny", text: "Gentle and refreshing." },
@@ -124,7 +124,7 @@ const products = [
       id: 11,
       name: "Pulses From Organic Farm",
       price: 200.00,
-      image: "/pulses.jpg",
+      image: "pulses.jpg",
       review: 4.6,
       comments: [
         { user: "Peter", text: "Very fresh and healthy." },
@@ -136,7 +136,7 @@ const products = [
       id: 12,
       name: "Wheat From Organic Farms",
       price: 134.00,
-      image: "/wheat.jpg",
+      image: "wheat.jpg",
       review: 4.7,
       comments: [
         { user: "George", text: "Top quality, fresh grains." },
@@ -147,7 +147,7 @@ const products = [
       id: 13,
       name: "Almond Milk",
       price: 150.00,
-      image: "/almond milk.jpg",
+      image: "almond milk.jpg",
       review: 4.3,
       comments: [
         { user: "Alex", text: "Creamy and delicious!" },
@@ -159,7 +159,7 @@ const products = [
       id: 14,
       name: "Green Tea",
       price: 120.00,
-      image: "/green-tea.jpg",
+      image: "green-tea.jpg",
       review: 4.6,
       comments: [
         { user: "Liam", text: "Refreshing and calming." },
@@ -171,7 +171,7 @@ const products = [
       id: 15,
       name: "Quinoa",
       price: 290.00,
-      image: "/quinoa.jpg",
+      image: "quinoa.jpg",
       review: 4.4,
       comments: [
         { user: "Noah", text: "Nutritious and versatile." },
@@ -183,7 +183,7 @@ const products = [
       id: 16,
       name: "Organic Avocados",
       price: 200.00,
-      image: "/Avocado.jpg",
+      image: "Avocado.jpg",
       review: 4.8,
       comments: [
         { user: "Mia", text: "Fresh and creamy." },
@@ -195,7 +195,7 @@ const products = [
       id: 17,
       name: "Coconut Water",
       price: 85.00,
-      image: "/coconut-water.jpg",
+      image: "coconut-water.jpg",
       review: 4.7,
       comments: [
         { user: "Isabella", text: "Hydrating and tasty." },
@@ -207,7 +207,7 @@ const products = [
       id: 18,
       name: "Organic Peanut Butter",
       price: 275.00,
-      image: "/peanut-butter.jpg",
+      image: "peanut-butter.jpg",
       review: 4.5,
       comments: [
         { user: "Charlotte", text: "Smooth and rich flavor." },
@@ -219,7 +219,7 @@ const products = [
       id: 19,
       name: "Cold Pressed Olive Oil",
       price: 350.00,
-      image: "/olive-oil.jpg",
+      image: "olive-oil.jpg",
       review: 4.6,
       comments: [
         { user: "Lucas", text: "High quality and great taste." },
@@ -231,7 +231,7 @@ const products = [
       id: 20,
       name: "Berry Smoothie Mix",
       price: 180.00,
-      image: "/berry.jpg",
+      image: "berry.jpg",
       review: 4.5,
       comments: [
         { user: "Ava", text: "Delicious and easy to make." },
@@ -243,7 +243,7 @@ const products = [
       id: 21,
       name: "Raw Almonds",
       price: 320.00,
-      image: "/almonds.jpg",
+      image: "almonds.jpg",
       review: 4.7,
       comments: [
         { user: "Ella", text: "Crunchy and fresh." },
@@ -255,7 +255,7 @@ const products = [
       id: 22,
       name: "Herbal Tea",
       price: 110.00,
-      image: "/tea.jpg",
+      image: "tea.jpg",
       review: 4.3,
       comments: [
         { user: "Benjamin", text: "Soothing and fragrant." },
@@ -267,7 +267,7 @@ const products = [
       id: 23,
       name: "Gluten-Free Pasta",
       price: 220.00,
-      image: "/pasta.jpg",
+      image: "pasta.jpg",
       review: 4.6,
       comments: [
         { user: "Oliver", text: "Great texture and taste." },
@@ -279,7 +279,7 @@ const products = [
       id: 24,
       name: "Fresh Mint Leaves",
       price: 60.00,
-      image: "/mint-leaves.jpg",
+      image: "mint-leaves.jpg",
       review: 4.4,
       comments: [
         { user: "Henry", text: "Adds a fresh touch to dishes." },
