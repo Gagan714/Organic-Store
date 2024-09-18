@@ -15,7 +15,7 @@ function ProductDetails() {
       <img src={product.image} alt={product.name} className="w-64 h-64" />
       <h1 className="text-2xl font-bold mt-4">{product.name}</h1>
       <p>Price: ₹{product.price}</p>
-      <p>Reviews: {product.reviews}</p>
+      <p>Reviews: {product.review}</p>
       <p>Description: {product.description}</p>
     </div>
   );

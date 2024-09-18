@@ -21,7 +21,7 @@ function App() {
           <Route path="/juice" element={<Juice />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/product/:id" element={<ProductDetails />} /> {/* Dynamic route */}
+          <Route path="/product" element={<ProductDetails />} /> {/* Dynamic route */}
         </Routes>
       </Layout>
     </Router>
