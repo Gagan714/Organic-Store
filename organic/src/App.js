@@ -8,6 +8,7 @@ import Groceries from './components/Groceries';
 import Juice from './components/Juice';
 import About from './components/About';
 import Contact from './components/Contact';
+import Single from './components/Single';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/juice" element={<Juice />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/single" element={<Single/>}/>
         </Routes>
       </Layout>
     </Router>
