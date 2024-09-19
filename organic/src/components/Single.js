@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // Import useLocation
+import { useLocation } from 'react-router-dom';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,19 +8,28 @@ import Card from './Card';
 import products from './Products';
 
 const Single = () => {
-    const location = useLocation(); // Get location from useLocation
-    const { product } = location.state || {}; // Retrieve the product from state
+    const location = useLocation();
+    const { product } = location.state || {};
     const [count, setCount] = useState(1);
     const [side, setSide] = useState([]);
 
     useEffect(() => {
         if (product) {
-            const sideProducts = products.slice(3, 8);
+            // Find the index of the current product
+            const currentIndex = products.findIndex(p => p.id === product.id);
+            
+            // Get the products before and after the current product
+            const before = products.slice(Math.max(currentIndex - 3, 0), currentIndex);
+            const after = products.slice(currentIndex + 1, currentIndex + 3);
+            
+            // Combine the before and after arrays
+            const sideProducts = [...before, ...after];
             setSide(sideProducts);
         }
     }, [product]);
+
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to the top when component mounts
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }, []);
 
     if (!product) {
@@ -29,11 +38,10 @@ const Single = () => {
 
     const review = product.comments;
 
-    // Handle input change (user typing)
     const handleInputChange = (e) => {
         const value = e.target.value;
         if (value === '') {
-            setCount(''); // Allow the user to clear the input
+            setCount('');
         } else {
             const parsedValue = parseInt(value, 10);
             if (!isNaN(parsedValue) && parsedValue >= 1 && parsedValue <= 100) {
@@ -42,21 +50,18 @@ const Single = () => {
         }
     };
 
-    // Handle input blur (when user leaves input field)
     const handleInputBlur = () => {
         if (count === '' || isNaN(count) || count < 1) {
-            setCount(1); // Set the default value to 1 if input is invalid
+            setCount(1);
         }
     };
 
-    // Increment the number
     const handleIncrement = () => {
         if (count < 100) {
             setCount(prevCount => (prevCount === '' ? 1 : prevCount + 1));
         }
     };
 
-    // Decrement the number
     const handleDecrement = () => {
         if (count > 1) {
             setCount(prevCount => prevCount - 1);
@@ -98,7 +103,7 @@ const Single = () => {
                             type="number"
                             value={count}
                             onChange={handleInputChange}
-                            onBlur={handleInputBlur} // Restore valid value on blur
+                            onBlur={handleInputBlur}
                             className="w-16 text-center border border-gray-300 rounded py-2 text-lg"
                             min={1}
                             max={100}
@@ -123,7 +128,7 @@ const Single = () => {
                 </div>
             </div>
 
-            <hr className='my-8 border-gray-300'/> {/* Adds spacing and a light border color */}
+            <hr className='my-8 border-gray-300'/> 
 
             <div className='flex justify-center items-center mt-6'>
                 <div className='font-bold text-4xl'>Reviews</div>
