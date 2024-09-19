@@ -147,7 +147,7 @@ const Single = () => {
             <div className='flex justify-center items-center mt-6'>
                 <div className='font-bold text-4xl'>Related Products</div>
             </div>
-            <div className='flex flex-wrap justify-center gap-6 mt-8'>
+            <div className='flex flex-wrap justify-center gap-6 mt-8' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                 {side.map((product) => (
                     <Card key={product.id} product={product}/>
                 ))}
