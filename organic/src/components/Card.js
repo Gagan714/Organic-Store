@@ -1,12 +1,20 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 function Card({ product }) {
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleClick = () => {
+    navigate('/single', { state: { product } }); // Pass the product as state
+  };
+
   return (
     <div
       key={product.id}
-      className='border rounded-md p-4 w-80 cursor-pointer'  // Added cursor-pointer for hover effect
+      className='border rounded-md p-4 w-80 cursor-pointer'
+      onClick={handleClick} // Attach click handler
     >
       <img src={product.image} alt={product.name} className='w-full h-60 object-cover mb-2' />
       <div className='text-center'>

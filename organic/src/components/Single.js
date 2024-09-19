@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
-import products from './Products';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'; // Import useLocation
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faStar } from '@fortawesome/free-solid-svg-icons';
+import Card from './Card';
+import products from './Products';
 
-const Single = ({ id }) => {
-    // Initialize the state for the number input
+const Single = () => {
+    const location = useLocation(); // Get location from useLocation
+    const { product } = location.state || {}; // Retrieve the product from state
     const [count, setCount] = useState(1);
+    const [side, setSide] = useState([]);
 
-    // Find the product by id
-    const product = products.find(product => product.id === 3);
+    useEffect(() => {
+        if (product) {
+            const sideProducts = products.slice(3, 8);
+            setSide(sideProducts);
+        }
+    }, [product]);
 
-    // Ensure the product exists before rendering
     if (!product) {
         return <div>Product not found</div>;
     }
@@ -134,6 +141,15 @@ const Single = ({ id }) => {
                         </div>
                         <div className='mt-2 text-gray-700'>{r.text}</div>
                     </div>
+                ))}
+            </div>
+            <hr className='my-8 border-gray-300'/>
+            <div className='flex justify-center items-center mt-6'>
+                <div className='font-bold text-4xl'>Related Products</div>
+            </div>
+            <div className='flex flex-wrap justify-center gap-6 mt-8'>
+                {side.map((product) => (
+                    <Card key={product.id} product={product}/>
                 ))}
             </div>
         </>
