@@ -19,6 +19,9 @@ const Single = () => {
             setSide(sideProducts);
         }
     }, [product]);
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to the top when component mounts
+    }, []);
 
     if (!product) {
         return <div>Product not found</div>;
