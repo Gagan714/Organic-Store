@@ -4,164 +4,187 @@ import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faStar } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';  // Redux hook
+import { addToCart } from './CartSlice';  // Import the addToCart action
 import Card from './Card';
 import products from './Products';
 
 const Single = () => {
-    const location = useLocation();
-    const { product } = location.state || {};
-    const [count, setCount] = useState(1);
-    const [side, setSide] = useState([]);
+  const location = useLocation();
+  const { product } = location.state || {};
+  const [count, setCount] = useState(1);
+  const [side, setSide] = useState([]);
 
-    useEffect(() => {
-        if (product) {
-            // Find the index of the current product
-            const currentIndex = products.findIndex(p => p.id === product.id);
-            
-            // Get the products before and after the current product
-            const before = products.slice(Math.max(currentIndex - 3, 0), currentIndex);
-            const after = products.slice(currentIndex + 1, currentIndex + 3);
-            
-            // Combine the before and after arrays
-            const sideProducts = [...before, ...after];
-            setSide(sideProducts);
-        }
-    }, [product]);
+  // Initialize dispatch
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, []);
-
-    if (!product) {
-        return <div>Product not found</div>;
+  useEffect(() => {
+    if (product) {
+      // Find the index of the current product
+      const currentIndex = products.findIndex(p => p.id === product.id);
+      
+      // Get the products before and after the current product
+      const before = products.slice(Math.max(currentIndex - 3, 0), currentIndex);
+      const after = products.slice(currentIndex + 1, currentIndex + 3);
+      
+      // Combine the before and after arrays
+      const sideProducts = [...before, ...after];
+      setSide(sideProducts);
     }
+  }, [product]);
 
-    const review = product.comments;
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
-    const handleInputChange = (e) => {
-        const value = e.target.value;
-        if (value === '') {
-            setCount('');
-        } else {
-            const parsedValue = parseInt(value, 10);
-            if (!isNaN(parsedValue) && parsedValue >= 1 && parsedValue <= 100) {
-                setCount(parsedValue);
-            }
-        }
-    };
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
-    const handleInputBlur = () => {
-        if (count === '' || isNaN(count) || count < 1) {
-            setCount(1);
-        }
-    };
+  const review = product.comments;
 
-    const handleIncrement = () => {
-        if (count < 100) {
-            setCount(prevCount => (prevCount === '' ? 1 : prevCount + 1));
-        }
-    };
+  // Handle Quantity Changes
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    if (value === '') {
+      setCount('');
+    } else {
+      const parsedValue = parseInt(value, 10);
+      if (!isNaN(parsedValue) && parsedValue >= 1 && parsedValue <= 100) {
+        setCount(parsedValue);
+      }
+    }
+  };
 
-    const handleDecrement = () => {
-        if (count > 1) {
-            setCount(prevCount => prevCount - 1);
-        }
-    };
+  const handleInputBlur = () => {
+    if (count === '' || isNaN(count) || count < 1) {
+      setCount(1);
+    }
+  };
 
-    return (
-        <>
-            <div className='flex justify-center items-start gap-20 mt-2 mx-52'>
-                {/* Image Section */}
-                <div className="overflow-hidden">
-                    <Zoom>
-                        <img
-                            className="transition-transform duration-300 ease-in-out transform hover:scale-150"
-                            height={1600}
-                            width={1600}
-                            src={product.image}
-                            alt={product.name}
-                        />
-                    </Zoom>
-                </div>
+  const handleIncrement = () => {
+    if (count < 100) {
+      setCount(prevCount => (prevCount === '' ? 1 : prevCount + 1));
+    }
+  };
 
-                {/* Product Details Section */}
-                <div>
-                    <div className='font-semibold text-4xl'>{product.name}</div>
-                    <div className='font-semibold text-2xl mt-5'>₹ {product.price}<span className='text-lg font-normal'>+ free shipping</span></div>
-                    <div className='mt-4'>Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non incidunt lores ta porro ame. numquam eius modi tempora incidunt lores ta porro ame.</div>
+  const handleDecrement = () => {
+    if (count > 1) {
+      setCount(prevCount => prevCount - 1);
+    }
+  };
 
-                    {/* Number Input for Product Quantity */}
-                    <div className='flex items-center space-x-4 mt-6'>
-                        <button
-                            onClick={handleDecrement}
-                            className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded"
-                        >
-                            -
-                        </button>
-                        
-                        <input
-                            type="number"
-                            value={count}
-                            onChange={handleInputChange}
-                            onBlur={handleInputBlur}
-                            className="w-16 text-center border border-gray-300 rounded py-2 text-lg"
-                            min={1}
-                            max={100}
-                        />
+  // Handle "Add to Cart" button click
+  const handleAddToCart = () => {
+    dispatch(addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: count,  // Pass the quantity from the input field
+    }));
+  };
 
-                        <button
-                            onClick={handleIncrement}
-                            className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded"
-                        >
-                            +
-                        </button>
-                        <div>
-                            <button className='h-12 w-44 border-2 border-black bg-green-600 rounded-lg text-white font-bold'>
-                                <div className='flex justify-center items-center gap-3'>
-                                    <div><FontAwesomeIcon icon={faShoppingCart} color="white" /></div>
-                                    <div>ADD TO CART</div>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-                    <div className='mt-8 text-xl'>Category :<span className='text-green-500'>{product.category}</span></div>
-                </div>
-            </div>
+  return (
+    <>
+      <div className='flex justify-center items-start gap-20 mt-2 mx-52'>
+        {/* Image Section */}
+        <div className="overflow-hidden">
+          <Zoom>
+            <img
+              className="transition-transform duration-300 ease-in-out transform hover:scale-150"
+              height={1600}
+              width={1600}
+              src={product.image}
+              alt={product.name}
+            />
+          </Zoom>
+        </div>
 
-            <hr className='my-8 border-gray-300'/> 
+        {/* Product Details Section */}
+        <div>
+          <div className='font-semibold text-4xl'>{product.name}</div>
+          <div className='font-semibold text-2xl mt-5'>₹ {product.price}<span className='text-lg font-normal'>+ free shipping</span></div>
+          <div className='mt-4'>Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non incidunt lores ta porro ame. numquam eius modi tempora incidunt lores ta porro ame.</div>
 
-            <div className='flex justify-center items-center mt-6'>
-                <div className='font-bold text-4xl'>Reviews</div>
-            </div>
+          {/* Number Input for Product Quantity */}
+          <div className='flex items-center space-x-4 mt-6'>
+            <button
+              onClick={handleDecrement}
+              className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded"
+            >
+              -
+            </button>
             
-            <div className='flex flex-wrap justify-center gap-6'>
-                {review.map((r, index) => (
-                    <div key={index} className='bg-white shadow-md p-4 rounded-lg w-full max-w-sm'>
-                        <div className='font-semibold text-lg'>{r.user}</div>
-                        <div className='flex items-center mt-1'>
-                            {[...Array(5)].map((_, starIndex) => (
-                                <FontAwesomeIcon
-                                    key={starIndex}
-                                    icon={faStar}
-                                    color={starIndex < Math.round(4) ? 'gold' : 'gray'}
-                                />
-                            ))}
-                        </div>
-                        <div className='mt-2 text-gray-700'>{r.text}</div>
-                    </div>
-                ))}
+            <input
+              type="number"
+              value={count}
+              onChange={handleInputChange}
+              onBlur={handleInputBlur}
+              className="w-16 text-center border border-gray-300 rounded py-2 text-lg"
+              min={1}
+              max={100}
+            />
+
+            <button
+              onClick={handleIncrement}
+              className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded"
+            >
+              +
+            </button>
+
+            <div>
+              <button 
+                className='h-12 w-44 border-2 border-black bg-green-600 rounded-lg text-white font-bold'
+                onClick={handleAddToCart}  // Call handleAddToCart when clicked
+              >
+                <div className='flex justify-center items-center gap-3'>
+                  <div><FontAwesomeIcon icon={faShoppingCart} color="white" /></div>
+                  <div>ADD TO CART</div>
+                </div>
+              </button>
             </div>
-            <hr className='my-8 border-gray-300'/>
-            <div className='flex justify-center items-center mt-6'>
-                <div className='font-bold text-4xl'>Related Products</div>
+          </div>
+          <div className='mt-8 text-xl'>Category :<span className='text-green-500'>{product.category}</span></div>
+        </div>
+      </div>
+
+      <hr className='my-8 border-gray-300'/> 
+
+      <div className='flex justify-center items-center mt-6'>
+        <div className='font-bold text-4xl'>Reviews</div>
+      </div>
+      
+      <div className='flex flex-wrap justify-center gap-6'>
+        {review.map((r, index) => (
+          <div key={index} className='bg-white shadow-md p-4 rounded-lg w-full max-w-sm'>
+            <div className='font-semibold text-lg'>{r.user}</div>
+            <div className='flex items-center mt-1'>
+              {[...Array(5)].map((_, starIndex) => (
+                <FontAwesomeIcon
+                  key={starIndex}
+                  icon={faStar}
+                  color={starIndex < Math.round(4) ? 'gold' : 'gray'}
+                />
+              ))}
             </div>
-            <div className='flex flex-wrap justify-center gap-6 mt-8' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                {side.map((product) => (
-                    <Card key={product.id} product={product}/>
-                ))}
-            </div>
-        </>
-    );
+            <div className='mt-2 text-gray-700'>{r.text}</div>
+          </div>
+        ))}
+      </div>
+
+      <hr className='my-8 border-gray-300'/>
+
+      <div className='flex justify-center items-center mt-6'>
+        <div className='font-bold text-4xl'>Related Products</div>
+      </div>
+      <div className='flex flex-wrap justify-center gap-6 mt-8' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        {side.map((product) => (
+          <Card key={product.id} product={product} />
+        ))}
+      </div>
+    </>
+  );
 };
 
 export default Single;
