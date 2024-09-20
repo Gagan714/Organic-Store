@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, decreaseQuantity } from './CartSlice'; // Import actions
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faTrash, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
