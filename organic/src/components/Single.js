@@ -4,30 +4,25 @@ import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faStar } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch } from 'react-redux';  // Redux hook
-import { addToCart } from './CartSlice';  // Import the addToCart action
+import { useDispatch } from 'react-redux';
+import { addToCart } from './CartSlice';
 import Card from './Card';
 import products from './Products';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 
 const Single = () => {
   const location = useLocation();
   const { product } = location.state || {};
   const [count, setCount] = useState(1);
   const [side, setSide] = useState([]);
-
-  // Initialize dispatch
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (product) {
-      // Find the index of the current product
       const currentIndex = products.findIndex(p => p.id === product.id);
-      
-      // Get the products before and after the current product
       const before = products.slice(Math.max(currentIndex - 3, 0), currentIndex);
       const after = products.slice(currentIndex + 1, currentIndex + 3);
-      
-      // Combine the before and after arrays
       const sideProducts = [...before, ...after];
       setSide(sideProducts);
     }
@@ -43,7 +38,6 @@ const Single = () => {
 
   const review = product.comments;
 
-  // Handle Quantity Changes
   const handleInputChange = (e) => {
     const value = e.target.value;
     if (value === '') {
@@ -74,21 +68,21 @@ const Single = () => {
     }
   };
 
-  // Handle "Add to Cart" button click
   const handleAddToCart = () => {
     dispatch(addToCart({
       id: product.id,
       name: product.name,
       price: product.price,
       image: product.image,
-      quantity: count,  // Pass the quantity from the input field
+      quantity: count,
     }));
+    toast.success(`${product.name} added to cart!`); // Show toast message
   };
 
   return (
     <>
+      <ToastContainer />
       <div className='flex justify-center items-start gap-20 mt-2 mx-52'>
-        {/* Image Section */}
         <div className="overflow-hidden">
           <Zoom>
             <img
@@ -101,13 +95,11 @@ const Single = () => {
           </Zoom>
         </div>
 
-        {/* Product Details Section */}
         <div>
           <div className='font-semibold text-4xl'>{product.name}</div>
           <div className='font-semibold text-2xl mt-5'>₹ {product.price}<span className='text-lg font-normal'>+ free shipping</span></div>
           <div className='mt-4'>Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non incidunt lores ta porro ame. numquam eius modi tempora incidunt lores ta porro ame.</div>
 
-          {/* Number Input for Product Quantity */}
           <div className='flex items-center space-x-4 mt-6'>
             <button
               onClick={handleDecrement}
@@ -136,7 +128,7 @@ const Single = () => {
             <div>
               <button 
                 className='h-12 w-44 border-2 border-black bg-green-600 rounded-lg text-white font-bold'
-                onClick={handleAddToCart}  // Call handleAddToCart when clicked
+                onClick={handleAddToCart}
               >
                 <div className='flex justify-center items-center gap-3'>
                   <div><FontAwesomeIcon icon={faShoppingCart} color="white" /></div>

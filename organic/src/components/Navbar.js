@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, decreaseQuantity } from './CartSlice'; // Import actions
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,10 +7,12 @@ import { faMinus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const cartRef = useRef(); // Ref to track dropdown
   const cartItems = useSelector((state) => state.cart.items);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const navLinkStyles = ({ isActive }) => ({
     color: isActive ? 'green' : '', // Active link is green, others are default
@@ -28,6 +30,24 @@ function Navbar() {
   const handleDecreaseQuantity = (id) => {
     dispatch(decreaseQuantity(id));
   };
+
+  const handleBuyNow = () => {
+    setIsOpen(false); // Close cart dropdown
+    navigate('/checkout'); // Navigate to checkout page
+  };
+
+  // Close dropdown when clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (cartRef.current && !cartRef.current.contains(event.target)) {
+        setIsOpen(false); // Close the dropdown if clicked outside
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="h-30 w-auto m-8 mt-3 flex justify-between items-center">
@@ -63,7 +83,7 @@ function Navbar() {
         </NavLink>
 
         {/* Cart Section */}
-        <div className="relative">
+        <div className="relative" ref={cartRef}>
           <div className="flex justify-center items-center gap-2 text-green-700 cursor-pointer" onClick={toggleDropdown}>
             <div>₹<span>{totalPrice.toFixed(2)}</span></div>
             <div>
@@ -111,7 +131,7 @@ function Navbar() {
                     <span>Total:</span>
                     <span>₹ {totalPrice.toFixed(2)}</span>
                   </div>
-                  <button className="mt-4 w-full bg-green-600 text-white py-2 rounded-lg">
+                  <button onClick={handleBuyNow} className="mt-4 w-full bg-green-600 text-white py-2 rounded-lg">
                     Buy Now
                   </button>
                 </>
